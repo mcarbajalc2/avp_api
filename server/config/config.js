@@ -15,6 +15,13 @@ process.env.MYSQL_DATABASE = 'avp_dev';
 process.env.MYSQL_PORT = 25060;
 
 /**
+ * REQUEST AND RESPONSE
+ */
+
+process.env.REQ_SIZE = '50mb';
+process.env.RES_SIZE = '50mb';
+
+/**
  * ORIGINS
  */
 

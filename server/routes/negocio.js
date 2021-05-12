@@ -2,7 +2,7 @@ const app = require('express')();
 const db = require('../libs/database/database');
 
 app.post('/negocio', async(req, res) => {
-    const params = [req.body.id_empresa, req.body.id_persona_contacto, db.Out('id_negocio')];
+    const params = [req.body.id_empresa, req.body.id_persona_contacto, req.body.id_usuario, db.Out('id_negocio')];
     try {
         const { outputs } = await db.exec('SP_NEGOCIO_INSERT', params);
         res.json({
@@ -19,7 +19,7 @@ app.post('/negocio', async(req, res) => {
 
 app.get('/negocio', async(req, res) => {
     try{
-        const { outputs, results } = await db.exec('SP_NEGOCIO_LIST', []);
+        const { outputs, results } = await db.exec('SP_NEGOCIO_LIST', [req.query.id_usuario]);
         res.json({
             complete: true,
             results: results[0]

@@ -8,8 +8,8 @@ const corsOptions = process.env.ORIGINS;
 
 const files = fs.readdirSync(path);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({limit: process.env.RES_SIZE}));
+app.use(express.urlencoded({ extended: true, limit: process.env.REQ_SIZE }));
 app.use(require('../body-params-parser/body-params-parser')());
 app.use(cors(corsOptions));
 

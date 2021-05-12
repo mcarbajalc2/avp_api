@@ -47,14 +47,13 @@ const getProcedureStatement = (procedure, params) => {
 }
 
 const query = (sql) => {
-    // console.log(sql);
     return new Promise((resolve, reject) => {
         connection.query(sql, function(error, results, fields) {
             if (error) {
                 reject(error);
-                return;
-            };
-            resolve(results);
+            } else{
+                resolve(results);
+            }            
         });
     });
 };
