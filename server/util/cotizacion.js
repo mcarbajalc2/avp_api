@@ -12,12 +12,31 @@ const genPDF = (cotizacion, res) => {
     paintRemitente(pdf, cotizacion, titleX)
     paintTable(pdf, cotizacion)
     paintFooter(pdf, cotizacion)
-    paintTerminosCondiciones(pdf)
+    paintValidez(pdf)
+
+    addCondiciones(pdf);
 
     pdf.download(res)
 }
 
-const paintTerminosCondiciones = (pdf) => {
+const addCondiciones = (pdf) => {
+    pdf.addPage();
+    pdf.image('server/images/cotizacion-header2.png', 0, 0, {width: 308})
+
+    pdf.doc.moveDown();
+    pdf.doc.moveDown();
+    pdf.doc.moveDown();
+    pdf.doc.moveDown();
+    pdf.doc.moveDown();
+    pdf.doc.moveDown();
+
+    pdf.doc.fontSize(28);
+    pdf.doc.fillColor('#89B836')
+        .font('server/fonts/Roboto/Roboto-Black.ttf')
+        .text('COTIZACIÓN', x, y, {width});
+}
+
+const paintValidez = (pdf) => {
     const y = pdf.doc.page.height - 130
     pdf.doc
         .fontSize(10)
